@@ -1,5 +1,7 @@
 {
   "dependencies": {
+    "@ensdomains/ens-contracts": "^0.0.7",
+    "@openzeppelin/contracts": "^4.3.1",
     "@truffle/hdwallet-provider": "^1.5.0"
   }
 }

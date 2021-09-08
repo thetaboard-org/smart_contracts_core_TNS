@@ -21,7 +21,6 @@
 const secrets = require('./secrets.json');
 const HDWalletProvider = require('@truffle/hdwallet-provider');
 const privateKey = secrets.privateKey;
-console.log(mnemonic);
 
 module.exports = {
   /**
@@ -43,7 +42,7 @@ module.exports = {
     //
     development: {
       host: '127.0.0.1', // Localhost (default: none)
-      port: 7545, // Standard Ethereum port (default: none)
+      port: 8545, // Standard Ethereum port (default: none)
       gas: 0xfffffffffff,	// <-- Use this high gas value
       gasPrice: 0x01,	// <-- Use this low gas price
       network_id: '*', // Any network (default: none)
@@ -79,7 +78,7 @@ module.exports = {
   // Configure your compilers
   compilers: {
     solc: {
-      version: "0.6.12",    // Fetch exact version from solc-bin (default: truffle's version)
+      version: "0.8.4",    // Fetch exact version from solc-bin (default: truffle's version)
       docker: false,        // Use "0.5.1" you've installed locally with docker (default: false)
       settings: {          // See the solidity docs for advice about optimization and evmVersion
         optimizer: {
