@@ -1,9 +1,9 @@
 {
   "contractName": "SafeMath",
   "abi": [],
-  "metadata": "{\"compiler\":{\"version\":\"0.8.4+commit.c7e474f2\"},\"language\":\"Solidity\",\"output\":{\"abi\":[],\"devdoc\":{\"details\":\"Unsigned math operations with safety checks that revert on error\",\"kind\":\"dev\",\"methods\":{},\"title\":\"SafeMath\",\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"@ensdomains/ens-contracts/contracts/ethregistrar/SafeMath.sol\":\"SafeMath\"},\"evmVersion\":\"constantinople\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"@ensdomains/ens-contracts/contracts/ethregistrar/SafeMath.sol\":{\"keccak256\":\"0xe0d6a6c8982dd734335683451a3914cbb49801203772b9fc1fd1efacae75d4ce\",\"urls\":[\"bzz-raw://ce07893129a9b35d0bbc02a1159e43dac28ef1264af297b0e3b8c259014332be\",\"dweb:/ipfs/Qmc47rNeqXsEARxFXNrt1CYaKmiRWKb3mPpudGQjHWvSYt\"]}},\"version\":1}",
-  "bytecode": "0x60566050600b82828239805160001a6073146043577f4e487b7100000000000000000000000000000000000000000000000000000000600052600060045260246000fd5b30600052607381538281f3fe73000000000000000000000000000000000000000030146080604052600080fdfea26469706673582212205f8d54b360788c974f63858b9d9a833b6bd40edb8b52768575afaa88128e5fb464736f6c63430008040033",
-  "deployedBytecode": "0x73000000000000000000000000000000000000000030146080604052600080fdfea26469706673582212205f8d54b360788c974f63858b9d9a833b6bd40edb8b52768575afaa88128e5fb464736f6c63430008040033",
+  "metadata": "{\"compiler\":{\"version\":\"0.8.4+commit.c7e474f2\"},\"language\":\"Solidity\",\"output\":{\"abi\":[],\"devdoc\":{\"details\":\"Unsigned math operations with safety checks that revert on error\",\"kind\":\"dev\",\"methods\":{},\"title\":\"SafeMath\",\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"@ensdomains/ens-contracts/contracts/ethregistrar/SafeMath.sol\":\"SafeMath\"},\"evmVersion\":\"constantinople\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"@ensdomains/ens-contracts/contracts/ethregistrar/SafeMath.sol\":{\"keccak256\":\"0xe0d6a6c8982dd734335683451a3914cbb49801203772b9fc1fd1efacae75d4ce\",\"urls\":[\"bzz-raw://ce07893129a9b35d0bbc02a1159e43dac28ef1264af297b0e3b8c259014332be\",\"dweb:/ipfs/Qmc47rNeqXsEARxFXNrt1CYaKmiRWKb3mPpudGQjHWvSYt\"]}},\"version\":1}",
+  "bytecode": "0x60566050600b82828239805160001a6073146043577f4e487b7100000000000000000000000000000000000000000000000000000000600052600060045260246000fd5b30600052607381538281f3fe73000000000000000000000000000000000000000030146080604052600080fdfea26469706673582212206dd20ca30c15c7d52f8c9b37d9c9f0f8e42425ee2cfea2cb11dfab94ee6c7bbb64736f6c63430008040033",
+  "deployedBytecode": "0x73000000000000000000000000000000000000000030146080604052600080fdfea26469706673582212206dd20ca30c15c7d52f8c9b37d9c9f0f8e42425ee2cfea2cb11dfab94ee6c7bbb64736f6c63430008040033",
   "immutableReferences": {},
   "generatedSources": [],
   "deployedGeneratedSources": [],
@@ -3303,7 +3303,7 @@
   },
   "networks": {},
   "schemaVersion": "3.4.3",
-  "updatedAt": "2021-09-08T10:18:29.298Z",
+  "updatedAt": "2021-09-16T14:25:26.539Z",
   "devdoc": {
     "details": "Unsigned math operations with safety checks that revert on error",
     "kind": "dev",

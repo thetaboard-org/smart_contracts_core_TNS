@@ -3,7 +3,7 @@ pragma solidity ^0.8.4;
 
 pragma experimental ABIEncoderV2;
 
-import "@ensdomains/ens-contracts/contracts/registry/ENS.sol";
+import "./ENSRegistry.sol";
 import "@ensdomains/ens-contracts/contracts/resolvers/profiles/ABIResolver.sol";
 import "@ensdomains/ens-contracts/contracts/resolvers/profiles/AddrResolver.sol";
 import "@ensdomains/ens-contracts/contracts/resolvers/profiles/ContentHashResolver.sol";
@@ -19,41 +19,44 @@ import "@ensdomains/ens-contracts/contracts/resolvers/profiles/TextResolver.sol"
  */
 contract PublicResolver is ABIResolver, AddrResolver, ContentHashResolver, DNSResolver, InterfaceResolver, NameResolver, PubkeyResolver, TextResolver {
     ENS ens;
-
     /**
-     * A mapping of authorisations. An address that is authorised for a name
+     * A mapping of operators. An address that is authorised for an address
      * may make any changes to the name that the owner could, but may not update
      * the set of authorisations.
-     * (node, owner, caller) => isAuthorised
+     * (owner, operator) => approved
      */
-    mapping(bytes32=>mapping(address=>mapping(address=>bool))) public authorisations;
+    mapping(address => mapping(address => bool)) private _operatorApprovals;
 
-    event AuthorisationChanged(bytes32 indexed node, address indexed owner, address indexed target, bool isAuthorised);
+    // Logged when an operator is added or removed.
+    event ApprovalForAll(address indexed owner, address indexed operator, bool approved);
 
-    constructor(ENS _ens) {
+    constructor(ENS _ens){
         ens = _ens;
     }
 
     /**
-     * @dev Sets or clears an authorisation.
-     * Authorisations are specific to the caller. Any account can set an authorisation
-     * for any name, but the authorisation that is checked will be that of the
-     * current owner of a name. Thus, transferring a name effectively clears any
-     * existing authorisations, and new authorisations can be set in advance of
-     * an ownership transfer if desired.
-     *
-     * @param node The name to change the authorisation on.
-     * @param target The address that is to be authorised or deauthorised.
-     * @param isAuthorised True if the address should be authorised, or false if it should be deauthorised.
+     * @dev See {IERC1155-setApprovalForAll}.
      */
-    function setAuthorisation(bytes32 node, address target, bool isAuthorised) external {
-        authorisations[node][msg.sender][target] = isAuthorised;
-        emit AuthorisationChanged(node, msg.sender, target, isAuthorised);
+    function setApprovalForAll(address operator, bool approved) external{
+        require(
+            msg.sender != operator,
+            "ERC1155: setting approval status for self"
+        );
+
+        _operatorApprovals[msg.sender][operator] = approved;
+        emit ApprovalForAll(msg.sender, operator, approved);
     }
 
     function isAuthorised(bytes32 node) internal override view returns(bool) {
         address owner = ens.owner(node);
-        return owner == msg.sender || authorisations[node][owner][msg.sender];
+        return owner == msg.sender || isApprovedForAll(owner, msg.sender);
+    }
+
+    /**
+     * @dev See {IERC1155-isApprovedForAll}.
+     */
+    function isApprovedForAll(address account, address operator) public view returns (bool){
+        return _operatorApprovals[account][operator];
     }
 
     function multicall(bytes[] calldata data) external returns(bytes[] memory results) {

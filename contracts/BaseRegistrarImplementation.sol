@@ -11,9 +11,6 @@ contract BaseRegistrarImplementation is BaseRegistrar, ERC721 {
     // A map of expiry times
     mapping(uint256=>uint) expiries;
 
-    event NameMigrated(uint256 indexed id, address indexed owner);
-    event NameRegistered(uint256 indexed id, address indexed owner);
-
     bytes4 constant private INTERFACE_META_ID = bytes4(keccak256("supportsInterface(bytes4)"));
     bytes4 constant private ERC721_ID = bytes4(
         keccak256("balanceOf(address)") ^
@@ -27,6 +24,20 @@ contract BaseRegistrarImplementation is BaseRegistrar, ERC721 {
         keccak256("safeTransferFrom(address,address,uint256,bytes)")
     );
     bytes4 constant private RECLAIM_ID = bytes4(keccak256("reclaim(uint256,address)"));
+
+    /**
+     * v2.1.3 version of _isApprovedOrOwner which calls ownerOf(tokenId) and takes grace period into consideration instead of ERC721.ownerOf(tokenId);
+     * https://github.com/OpenZeppelin/openzeppelin-contracts/blob/v2.1.3/contracts/token/ERC721/ERC721.sol#L187
+     * @dev Returns whether the given spender can transfer a given token ID
+     * @param spender address of the spender to query
+     * @param tokenId uint256 ID of the token to be transferred
+     * @return bool whether the msg.sender is approved for the given token ID,
+     *    is an operator of the owner, or is the owner of the token
+     */
+    function _isApprovedOrOwner(address spender, uint256 tokenId) internal view override returns (bool) {
+        address owner = ownerOf(tokenId);
+        return (spender == owner || getApproved(tokenId) == spender || isApprovedForAll(owner, spender));
+    }
 
     constructor(ENS _ens, bytes32 _baseNode) ERC721("ThetaboardRegistrar", "TBR")  {
         ens = _ens;
@@ -44,11 +55,13 @@ contract BaseRegistrarImplementation is BaseRegistrar, ERC721 {
     }
 
     /**
-     * @dev Gets the owner of the specified token ID
+     * @dev Gets the owner of the specified token ID. Names become unowned
+     *      when their registration expires.
      * @param tokenId uint256 ID of the token to query the owner of
      * @return address currently marked as the owner of the given token ID
      */
     function ownerOf(uint256 tokenId) public view override(IERC721, ERC721) returns (address) {
+        require(expiries[tokenId] > block.timestamp);
         return super.ownerOf(tokenId);
     }
 
@@ -76,7 +89,7 @@ contract BaseRegistrarImplementation is BaseRegistrar, ERC721 {
 
     // Returns true iff the specified name is available for registration.
     function available(uint256 id) public view override returns (bool) {
-        // TODO; return only if already exsits
+        // Not available if it's registered here or in its grace period.
         return expiries[id] + GRACE_PERIOD < block.timestamp;
     }
 
@@ -84,6 +97,7 @@ contract BaseRegistrarImplementation is BaseRegistrar, ERC721 {
      * @dev Register a name.
      * @param id The token ID (keccak256 of the label).
      * @param owner The address that should own the registration.
+     * @param duration Duration in seconds for the registration.
      */
     function register(uint256 id, address owner, uint duration) external override returns (uint) {
         return _register(id, owner, duration, true);
@@ -93,25 +107,27 @@ contract BaseRegistrarImplementation is BaseRegistrar, ERC721 {
      * @dev Register a name, without modifying the registry.
      * @param id The token ID (keccak256 of the label).
      * @param owner The address that should own the registration.
+     * @param duration Duration in seconds for the registration.
      */
-    function registerOnly(uint256 id, address owner, uint duration) external returns (uint) {
-        return _register(id, owner, duration, false);
+    function registerOnly(uint256 id, address owner, uint duration) external returns(uint) {
+      return _register(id, owner, duration, false);
     }
 
-    function _register(uint256 id, address owner, uint duration, bool updateRegistry) internal live onlyController returns(uint)  {
+    function _register(uint256 id, address owner, uint duration, bool updateRegistry) internal live onlyController returns(uint) {
         require(available(id));
+        require(block.timestamp + duration + GRACE_PERIOD > block.timestamp + GRACE_PERIOD); // Prevent future overflow
 
-        if (_exists(id)) {
-            // TODO: check this
+        expiries[id] = block.timestamp + duration;
+        if(_exists(id)) {
             // Name was previously owned, and expired
             _burn(id);
         }
         _mint(owner, id);
-        if (updateRegistry) {
+        if(updateRegistry) {
             ens.setSubnodeOwner(baseNode, bytes32(id), owner);
         }
 
-        emit NameRegistered(id, owner);
+        emit NameRegistered(id, owner, block.timestamp + duration);
 
         return block.timestamp + duration;
     }
@@ -124,7 +140,7 @@ contract BaseRegistrarImplementation is BaseRegistrar, ERC721 {
         emit NameRenewed(id, expiries[id]);
         return expiries[id];
     }
-    
+
     /**
      * @dev Reclaim ownership of a name in ENS, if you own it in the registrar.
      */
@@ -133,9 +149,9 @@ contract BaseRegistrarImplementation is BaseRegistrar, ERC721 {
         ens.setSubnodeOwner(baseNode, bytes32(id), owner);
     }
 
-    function supportsInterface(bytes4 interfaceId) public view override(ERC721, IERC165) returns (bool) {
+    function supportsInterface(bytes4 interfaceId) public pure override(ERC721, IERC165) returns (bool) {
         return interfaceId == INTERFACE_META_ID ||
-        interfaceId == ERC721_ID ||
-        interfaceId == RECLAIM_ID;
+            interfaceId == ERC721_ID ||
+            interfaceId == RECLAIM_ID;
     }
 }

@@ -21,7 +21,7 @@
       "type": "function"
     }
   ],
-  "metadata": "{\"compiler\":{\"version\":\"0.8.4+commit.c7e474f2\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"bytes4\",\"name\":\"interfaceID\",\"type\":\"bytes4\"}],\"name\":\"supportsInterface\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"pure\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"@ensdomains/ens-contracts/contracts/resolvers/ResolverBase.sol\":\"ResolverBase\"},\"evmVersion\":\"constantinople\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"@ensdomains/ens-contracts/contracts/resolvers/ResolverBase.sol\":{\"keccak256\":\"0x19ff93130a91ea54f949022dafa27cd9fa9af647820d957aed3c8641b1354d8e\",\"urls\":[\"bzz-raw://9b962ff3458e2d77b256d9685fe75c60ce5d3879f5ce6e3fab53117c2ae1e97c\",\"dweb:/ipfs/QmY9zyep1ntdVpsnpy5W6fzUC5ndBmBoYBTfAiyAWZrKvJ\"]}},\"version\":1}",
+  "metadata": "{\"compiler\":{\"version\":\"0.8.4+commit.c7e474f2\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"bytes4\",\"name\":\"interfaceID\",\"type\":\"bytes4\"}],\"name\":\"supportsInterface\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"pure\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"@ensdomains/ens-contracts/contracts/resolvers/ResolverBase.sol\":\"ResolverBase\"},\"evmVersion\":\"constantinople\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"@ensdomains/ens-contracts/contracts/resolvers/ResolverBase.sol\":{\"keccak256\":\"0x19ff93130a91ea54f949022dafa27cd9fa9af647820d957aed3c8641b1354d8e\",\"urls\":[\"bzz-raw://9b962ff3458e2d77b256d9685fe75c60ce5d3879f5ce6e3fab53117c2ae1e97c\",\"dweb:/ipfs/QmY9zyep1ntdVpsnpy5W6fzUC5ndBmBoYBTfAiyAWZrKvJ\"]}},\"version\":1}",
   "bytecode": "0x",
   "deployedBytecode": "0x",
   "immutableReferences": {},
@@ -2131,7 +2131,7 @@
   },
   "networks": {},
   "schemaVersion": "3.4.3",
-  "updatedAt": "2021-09-08T10:18:29.323Z",
+  "updatedAt": "2021-09-16T14:25:26.555Z",
   "devdoc": {
     "kind": "dev",
     "methods": {},
