@@ -1,7 +1,8 @@
+// SPDX-License-Identifier: MIT
 pragma solidity >=0.8.4;
 
-import "./ENSRegistry.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
+import "./ENSRegistry.sol";
 import "./utils/Controllable.sol";
 
 abstract contract NameResolver {

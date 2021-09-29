@@ -36,7 +36,7 @@ module.exports = async function (deployer, network, accounts) {
   const PublicResolverInstanceAddress = PublicResolverInstance.address;
 
   // deploy ETHRegistrarController
-  await deployer.deploy(ETHRegistrarController, BaseRegistrarImplementationInstanceAddress, TfuelPriceOracleInstanceAddress, 0, 86400);
+  await deployer.deploy(ETHRegistrarController, BaseRegistrarImplementationInstanceAddress, TfuelPriceOracleInstanceAddress, 60, 86400);
   const ETHRegistrarControllerInstance = await ETHRegistrarController.deployed();
   const ETHRegistrarControllerInstanceAddress = ETHRegistrarControllerInstance.address;
 

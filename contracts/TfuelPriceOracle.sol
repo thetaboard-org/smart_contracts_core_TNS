@@ -1,10 +1,9 @@
-// SPDX-License-Identifier: UNLICENSED
+// SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-import "@ensdomains/ens-contracts/contracts/ethregistrar/PriceOracle.sol";
-import "@ensdomains/ens-contracts/contracts/ethregistrar/SafeMath.sol";
 import "@ensdomains/ens-contracts/contracts/ethregistrar/StringUtils.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
+import "./interfaces/PriceOracle.sol";
 
 interface AggregatorInterface {
     function latestAnswer() external view returns (int256);
@@ -12,7 +11,6 @@ interface AggregatorInterface {
 
 // TfuelPriceOracle sets a price in tfuelWei per seconds based on domain length
 contract TfuelPriceOracle is Ownable, PriceOracle {
-    using SafeMath for *;
     using StringUtils for *;
 
     // Rent in base price per day by length. Element 0 is for 1-length names, and so on.
@@ -27,7 +25,7 @@ contract TfuelPriceOracle is Ownable, PriceOracle {
         setPrices(_rentPrices);
     }
 
-    function price(string calldata name, uint expires, uint duration) external view override returns (uint) {
+    function price(string calldata name) external view override returns (uint) {
         uint len = name.strlen();
         if (len > rentPrices.length) {
             len = rentPrices.length;

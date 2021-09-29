@@ -26,42 +26,25 @@ contract('BaseRegistrarTest', function (accounts) {
 	});
 
 	it('should allow new registrations', async () => {
-		var tx = await registrar.register(sha3("newname"), registrantAccount, 86400, {from: controllerAccount});
-		var block = await web3.eth.getBlock(tx.receipt.blockHash);
+		var tx = await registrar.register(sha3("newname"), registrantAccount, {from: controllerAccount});
 		assert.equal(await ens.owner(namehash.hash("newname.theta")), registrantAccount);
 		assert.equal(await registrar.ownerOf(sha3("newname")), registrantAccount);
-		assert.equal((await registrar.nameExpires(sha3("newname"))).toNumber(), block.timestamp + 86400);
 	});
 
 	it('should allow registrations without updating the registry', async () => {
-		var tx = await registrar.registerOnly(sha3("silentname"), registrantAccount, 86400, {from: controllerAccount});
+		var tx = await registrar.registerOnly(sha3("silentname"), registrantAccount, {from: controllerAccount});
 		var block = await web3.eth.getBlock(tx.receipt.blockHash);
 		assert.equal(await ens.owner(namehash.hash("silentname.theta")), ZERO_ADDRESS);
 		assert.equal(await registrar.ownerOf(sha3("silentname")), registrantAccount);
-		assert.equal((await registrar.nameExpires(sha3("silentname"))).toNumber(), block.timestamp + 86400);
-	});
-
-	it('should allow renewals', async () => {
-		var oldExpires = await registrar.nameExpires(sha3("newname"));
-		await registrar.renew(sha3("newname"), 86400, {from: controllerAccount});
-		assert.equal((await registrar.nameExpires(sha3("newname"))).toNumber(), oldExpires.add(toBN(86400)).toNumber());
 	});
 
 	it('should only allow the controller to register', async () => {
-		await exceptions.expectFailure(registrar.register(sha3("foo"), otherAccount, 86400, {from: otherAccount}));
-	});
-
-	it('should only allow the controller to renew', async () => {
-		await exceptions.expectFailure(registrar.renew(sha3("newname"), 86400, {from: otherAccount}));
+		await exceptions.expectFailure(registrar.register(sha3("foo"), otherAccount, {from: otherAccount}));
 	});
 
 	it('should not permit registration of already registered names', async () => {
-		await exceptions.expectFailure(registrar.register(sha3("newname"), otherAccount, 86400, {from: controllerAccount}));
+		await exceptions.expectFailure(registrar.register(sha3("newname"), otherAccount, {from: controllerAccount}));
 		assert.equal(await registrar.ownerOf(sha3("newname")), registrantAccount);
-	});
-
-	it('should not permit renewing a name that is not registered', async () => {
-		await exceptions.expectFailure(registrar.renew(sha3("name3"), 86400, {from: controllerAccount}));
 	});
 
 	it('should permit the owner to reclaim a name', async () => {
@@ -87,34 +70,6 @@ contract('BaseRegistrarTest', function (accounts) {
 
 	it('should prohibit anyone else from transferring a registration', async () => {
 		await exceptions.expectFailure(registrar.transferFrom(otherAccount, otherAccount, sha3("newname"), {from: otherAccount}));
-	});
-
-	it('should not permit transfer or reclaim during the grace period', async () => {
-		// Advance to the grace period
-		var ts = (await web3.eth.getBlock('latest')).timestamp;
-		await evm.advanceTime((await registrar.nameExpires(sha3("newname"))).toNumber() - ts + 3600);
-		await evm.mine()
-		await exceptions.expectFailure(registrar.transferFrom(registrantAccount, otherAccount, sha3("newname"), {from: registrantAccount}));
-		await exceptions.expectFailure(registrar.reclaim(sha3("newname"), registrantAccount, {from: registrantAccount}));
-	});
-
-	it('should allow renewal during the grace period', async () => {
-		await registrar.renew(sha3("newname"), 86400, {from: controllerAccount});
-	});
-
-	it('should allow registration of an expired domain', async () => {
-		var ts = (await web3.eth.getBlock('latest')).timestamp;
-		var expires = await registrar.nameExpires(sha3("newname"));
-		var grace = await registrar.GRACE_PERIOD();
-		await evm.advanceTime(expires.toNumber() - ts + grace.toNumber() + 3600);
-
-		try {
-			await registrar.ownerOf(sha3("newname"));
-			assert.fail("should throw an exception");
-		} catch(error) {}
-
-		await registrar.register(sha3("newname"), otherAccount, 86400, {from: controllerAccount});
-		assert.equal(await registrar.ownerOf(sha3("newname")), otherAccount);
 	});
 
 	it('should allow the owner to set a resolver address', async () => {

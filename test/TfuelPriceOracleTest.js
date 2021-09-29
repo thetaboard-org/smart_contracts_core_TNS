@@ -14,14 +14,14 @@ contract('TfuelPriceOracleTest', function () {
     });
 
     it('should return correct prices', async () => {
-        assert.equal((await priceOracle.price("foo", 0, 0)).toNumber(), 100);
-        assert.equal((await priceOracle.price("quux", 0, 0)).toNumber(), 50);
-        assert.equal((await priceOracle.price("fubar", 0, 0)).toNumber(), 30);
-        assert.equal((await priceOracle.price("foobie", 0, 0)).toNumber(), 30);
+        assert.equal((await priceOracle.price("foo")).toNumber(), 100);
+        assert.equal((await priceOracle.price("quux")).toNumber(), 50);
+        assert.equal((await priceOracle.price("fubar")).toNumber(), 30);
+        assert.equal((await priceOracle.price("foobie")).toNumber(), 30);
     });
 
     it('should work with larger values', async () => {
         await priceOracle.setPrices([toBN("1000000000000000000")]);
-        assert.equal((await priceOracle.price("foo", 0, 0)).toString(), "1000000000000000000");
+        assert.equal((await priceOracle.price("foo")).toString(), "1000000000000000000");
     })
 });

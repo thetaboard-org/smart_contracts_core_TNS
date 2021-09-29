@@ -76,7 +76,7 @@ contract('ETHRegistrarControllerTest', function (accounts) {
 
         await evm.advanceTime((await controller.minCommitmentAge()).toNumber());
         var balanceBefore = await web3.eth.getBalance(controller.address);
-        var tx = await controller.register("newname", registrantAccount, 28 * DAYS, secret, {value: 28 * DAYS + 1, gasPrice: 0});
+        var tx = await controller.register("newname", registrantAccount, secret, {value: 28 * DAYS + 1, gasPrice: 0});
         assert.equal(tx.logs.length, 1);
         assert.equal(tx.logs[0].event, "NameRegistered");
         assert.equal(tx.logs[0].args.name, "newname");
@@ -95,7 +95,7 @@ contract('ETHRegistrarControllerTest', function (accounts) {
 
         await evm.advanceTime((await controller.minCommitmentAge()).toNumber());
         var balanceBefore = await web3.eth.getBalance(controller.address);
-        var tx = await controller.registerWithConfig("newconfigname", registrantAccount, 28 * DAYS, secret, resolver.address, registrantAccount, {value: 28 * DAYS + 1, gasPrice: 0});
+        var tx = await controller.registerWithConfig("newconfigname", registrantAccount, secret, resolver.address, registrantAccount, {value: 28 * DAYS + 1, gasPrice: 0});
         assert.equal(tx.logs.length, 1);
         assert.equal(tx.logs[0].event, "NameRegistered");
         assert.equal(tx.logs[0].args.name, "newconfigname");
@@ -119,7 +119,7 @@ contract('ETHRegistrarControllerTest', function (accounts) {
 
         await evm.advanceTime((await controller.minCommitmentAge()).toNumber());
         var balanceBefore = await web3.eth.getBalance(controller.address);
-        var tx = await controller.registerWithConfig("newconfigname2", registrantAccount, 28 * DAYS, secret, resolver.address, NULL_ADDRESS, {value: 28 * DAYS + 1, gasPrice: 0});
+        var tx = await controller.registerWithConfig("newconfigname2", registrantAccount, secret, resolver.address, NULL_ADDRESS, {value: 28 * DAYS + 1, gasPrice: 0});
         assert.equal(tx.logs.length, 1);
         assert.equal(tx.logs[0].event, "NameRegistered");
         assert.equal(tx.logs[0].args.name, "newconfigname2");
@@ -136,7 +136,7 @@ contract('ETHRegistrarControllerTest', function (accounts) {
 
         await evm.advanceTime((await controller.minCommitmentAge()).toNumber());
         var balanceBefore = await web3.eth.getBalance(controller.address);
-        await exceptions.expectFailure(controller.register("newname2", registrantAccount, 28 * DAYS, secret, {value: 28 * DAYS, gasPrice: 0}));
+        await exceptions.expectFailure(controller.register("newname2", registrantAccount, secret, {value: 28 * DAYS, gasPrice: 0}));
     });
 
     it('should reject duplicate registrations', async () => {
@@ -144,7 +144,7 @@ contract('ETHRegistrarControllerTest', function (accounts) {
 
         await evm.advanceTime((await controller.minCommitmentAge()).toNumber());
         var balanceBefore = await web3.eth.getBalance(controller.address);
-        await exceptions.expectFailure(controller.register("newname", registrantAccount, 28 * DAYS, secret, {value: 28 * DAYS, gasPrice: 0}));
+        await exceptions.expectFailure(controller.register("newname", registrantAccount, secret, {value: 28 * DAYS, gasPrice: 0}));
     });
 
     it('should reject for expired commitments', async () => {
@@ -152,20 +152,7 @@ contract('ETHRegistrarControllerTest', function (accounts) {
 
         await evm.advanceTime((await controller.maxCommitmentAge()).toNumber() + 1);
         var balanceBefore = await web3.eth.getBalance(controller.address);
-        await exceptions.expectFailure(controller.register("newname2", registrantAccount, 28 * DAYS, secret, {value: 28 * DAYS, gasPrice: 0}));
-    });
-
-    it('should allow anyone to renew a name', async () => {
-        var expires = await baseRegistrar.nameExpires(sha3("newname"));
-        var balanceBefore = await web3.eth.getBalance(controller.address);
-        await controller.renew("newname", 86400, {value: 86400 + 1});
-        var newExpires = await baseRegistrar.nameExpires(sha3("newname"));
-        assert.equal(newExpires.toNumber() - expires.toNumber(), 86400);
-        assert.equal((await web3.eth.getBalance(controller.address)) - balanceBefore, 100);
-    });
-
-    it('should require sufficient value for a renewal', async () => {
-        await exceptions.expectFailure(controller.renew("name", 86400));
+        await exceptions.expectFailure(controller.register("newname2", registrantAccount, secret, {value: 28 * DAYS, gasPrice: 0}));
     });
 
     it('should allow the registrar owner to withdraw funds', async () => {
