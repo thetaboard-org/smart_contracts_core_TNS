@@ -3,19 +3,15 @@ pragma solidity >=0.8.4;
 
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "./ENSRegistry.sol";
+import "./abstract_contracts/NameResolver.sol";
 import "./utils/Controllable.sol";
 
-abstract contract NameResolver {
-    function setName(bytes32 node, string memory name) public virtual;
-}
-
-bytes32 constant lookup = 0x3031323334353637383961626364656600000000000000000000000000000000;
-
-bytes32 constant ADDR_REVERSE_NODE = 0x91d1777781884d03a6757a803996e38de2a42967fb37eeaca72729271025a9e2;
-
-// namehash('addr.reverse')
-
 contract ReverseRegistrar is Ownable, Controllable {
+    
+    bytes32 constant lookup = 0x3031323334353637383961626364656600000000000000000000000000000000;
+
+    bytes32 constant ADDR_REVERSE_NODE = 0x91d1777781884d03a6757a803996e38de2a42967fb37eeaca72729271025a9e2;
+
     ENS public ens;
     NameResolver public defaultResolver;
 

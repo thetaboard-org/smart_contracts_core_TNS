@@ -35,15 +35,15 @@
     "absolutePath": "project:/contracts/interfaces/PriceOracle.sol",
     "exportedSymbols": {
       "PriceOracle": [
-        8171
+        8174
       ]
     },
-    "id": 8172,
+    "id": 8175,
     "license": "MIT",
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 8162,
+        "id": 8165,
         "literals": [
           "solidity",
           ">=",
@@ -51,7 +51,7 @@
           ".4"
         ],
         "nodeType": "PragmaDirective",
-        "src": "33:24:33"
+        "src": "33:24:34"
       },
       {
         "abstract": false,
@@ -59,42 +59,42 @@
         "contractDependencies": [],
         "contractKind": "interface",
         "fullyImplemented": false,
-        "id": 8171,
+        "id": 8174,
         "linearizedBaseContracts": [
-          8171
+          8174
         ],
         "name": "PriceOracle",
-        "nameLocation": "71:11:33",
+        "nameLocation": "71:11:34",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "documentation": {
-              "id": 8163,
+              "id": 8166,
               "nodeType": "StructuredDocumentation",
-              "src": "90:197:33",
+              "src": "90:197:34",
               "text": " @dev Returns the price to register or renew a name.\n @param name The name being registered or renewed.\n @return The price of this renewal or registration, in wei."
             },
             "functionSelector": "fe2c6198",
-            "id": 8170,
+            "id": 8173,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "price",
-            "nameLocation": "302:5:33",
+            "nameLocation": "302:5:34",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 8166,
+              "id": 8169,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 8165,
+                  "id": 8168,
                   "mutability": "mutable",
                   "name": "name",
-                  "nameLocation": "324:4:33",
+                  "nameLocation": "324:4:34",
                   "nodeType": "VariableDeclaration",
-                  "scope": 8170,
-                  "src": "308:20:33",
+                  "scope": 8173,
+                  "src": "308:20:34",
                   "stateVariable": false,
                   "storageLocation": "calldata",
                   "typeDescriptions": {
@@ -102,10 +102,10 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 8164,
+                    "id": 8167,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
-                    "src": "308:6:33",
+                    "src": "308:6:34",
                     "typeDescriptions": {
                       "typeIdentifier": "t_string_storage_ptr",
                       "typeString": "string"
@@ -114,21 +114,21 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "307:22:33"
+              "src": "307:22:34"
             },
             "returnParameters": {
-              "id": 8169,
+              "id": 8172,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 8168,
+                  "id": 8171,
                   "mutability": "mutable",
                   "name": "",
                   "nameLocation": "-1:-1:-1",
                   "nodeType": "VariableDeclaration",
-                  "scope": 8170,
-                  "src": "352:4:33",
+                  "scope": 8173,
+                  "src": "352:4:34",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -136,10 +136,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 8167,
+                    "id": 8170,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "352:4:33",
+                    "src": "352:4:34",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -148,35 +148,35 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "351:6:33"
+              "src": "351:6:34"
             },
-            "scope": 8171,
-            "src": "293:65:33",
+            "scope": 8174,
+            "src": "293:65:34",
             "stateMutability": "view",
             "virtual": false,
             "visibility": "external"
           }
         ],
-        "scope": 8172,
-        "src": "61:300:33",
+        "scope": 8175,
+        "src": "61:300:34",
         "usedErrors": []
       }
     ],
-    "src": "33:330:33"
+    "src": "33:330:34"
   },
   "legacyAST": {
     "absolutePath": "project:/contracts/interfaces/PriceOracle.sol",
     "exportedSymbols": {
       "PriceOracle": [
-        8171
+        8174
       ]
     },
-    "id": 8172,
+    "id": 8175,
     "license": "MIT",
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 8162,
+        "id": 8165,
         "literals": [
           "solidity",
           ">=",
@@ -184,7 +184,7 @@
           ".4"
         ],
         "nodeType": "PragmaDirective",
-        "src": "33:24:33"
+        "src": "33:24:34"
       },
       {
         "abstract": false,
@@ -192,42 +192,42 @@
         "contractDependencies": [],
         "contractKind": "interface",
         "fullyImplemented": false,
-        "id": 8171,
+        "id": 8174,
         "linearizedBaseContracts": [
-          8171
+          8174
         ],
         "name": "PriceOracle",
-        "nameLocation": "71:11:33",
+        "nameLocation": "71:11:34",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "documentation": {
-              "id": 8163,
+              "id": 8166,
               "nodeType": "StructuredDocumentation",
-              "src": "90:197:33",
+              "src": "90:197:34",
               "text": " @dev Returns the price to register or renew a name.\n @param name The name being registered or renewed.\n @return The price of this renewal or registration, in wei."
             },
             "functionSelector": "fe2c6198",
-            "id": 8170,
+            "id": 8173,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "price",
-            "nameLocation": "302:5:33",
+            "nameLocation": "302:5:34",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 8166,
+              "id": 8169,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 8165,
+                  "id": 8168,
                   "mutability": "mutable",
                   "name": "name",
-                  "nameLocation": "324:4:33",
+                  "nameLocation": "324:4:34",
                   "nodeType": "VariableDeclaration",
-                  "scope": 8170,
-                  "src": "308:20:33",
+                  "scope": 8173,
+                  "src": "308:20:34",
                   "stateVariable": false,
                   "storageLocation": "calldata",
                   "typeDescriptions": {
@@ -235,10 +235,10 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 8164,
+                    "id": 8167,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
-                    "src": "308:6:33",
+                    "src": "308:6:34",
                     "typeDescriptions": {
                       "typeIdentifier": "t_string_storage_ptr",
                       "typeString": "string"
@@ -247,21 +247,21 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "307:22:33"
+              "src": "307:22:34"
             },
             "returnParameters": {
-              "id": 8169,
+              "id": 8172,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 8168,
+                  "id": 8171,
                   "mutability": "mutable",
                   "name": "",
                   "nameLocation": "-1:-1:-1",
                   "nodeType": "VariableDeclaration",
-                  "scope": 8170,
-                  "src": "352:4:33",
+                  "scope": 8173,
+                  "src": "352:4:34",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -269,10 +269,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 8167,
+                    "id": 8170,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "352:4:33",
+                    "src": "352:4:34",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -281,21 +281,21 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "351:6:33"
+              "src": "351:6:34"
             },
-            "scope": 8171,
-            "src": "293:65:33",
+            "scope": 8174,
+            "src": "293:65:34",
             "stateMutability": "view",
             "virtual": false,
             "visibility": "external"
           }
         ],
-        "scope": 8172,
-        "src": "61:300:33",
+        "scope": 8175,
+        "src": "61:300:34",
         "usedErrors": []
       }
     ],
-    "src": "33:330:33"
+    "src": "33:330:34"
   },
   "compiler": {
     "name": "solc",
@@ -303,7 +303,7 @@
   },
   "networks": {},
   "schemaVersion": "3.4.3",
-  "updatedAt": "2021-09-29T18:20:47.439Z",
+  "updatedAt": "2021-09-30T21:01:30.357Z",
   "devdoc": {
     "kind": "dev",
     "methods": {

@@ -6,7 +6,6 @@ const TFuelPriceOracle = artifacts.require("TFuelPriceOracle");
 const { evm, exceptions } = require("./test-utils");
 const namehash = require('eth-ens-namehash');
 const sha3 = require('web3-utils').sha3;
-const toBN = require('web3-utils').toBN;
 
 const DAYS = 24 * 60 * 60;
 const NULL_ADDRESS = "0x0000000000000000000000000000000000000000";
@@ -135,7 +134,7 @@ contract('ETHRegistrarControllerTest', function (accounts) {
         await controller.commit(await controller.makeCommitment("newname2", accounts[2], secret));
 
         await evm.advanceTime((await controller.minCommitmentAge()).toNumber());
-        var balanceBefore = await web3.eth.getBalance(controller.address);
+        await web3.eth.getBalance(controller.address);
         await exceptions.expectFailure(controller.register("newname2", registrantAccount, secret, {value: 28 * DAYS, gasPrice: 0}));
     });
 
@@ -143,7 +142,7 @@ contract('ETHRegistrarControllerTest', function (accounts) {
         await controller.commit(await controller.makeCommitment("newname", registrantAccount, secret));
 
         await evm.advanceTime((await controller.minCommitmentAge()).toNumber());
-        var balanceBefore = await web3.eth.getBalance(controller.address);
+        await web3.eth.getBalance(controller.address);
         await exceptions.expectFailure(controller.register("newname", registrantAccount, secret, {value: 28 * DAYS, gasPrice: 0}));
     });
 
@@ -151,7 +150,7 @@ contract('ETHRegistrarControllerTest', function (accounts) {
         await controller.commit(await controller.makeCommitment("newname2", registrantAccount, secret));
 
         await evm.advanceTime((await controller.maxCommitmentAge()).toNumber() + 1);
-        var balanceBefore = await web3.eth.getBalance(controller.address);
+        await web3.eth.getBalance(controller.address);
         await exceptions.expectFailure(controller.register("newname2", registrantAccount, secret, {value: 28 * DAYS, gasPrice: 0}));
     });
 

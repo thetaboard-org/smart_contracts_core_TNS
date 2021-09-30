@@ -62,13 +62,23 @@ module.exports = {
       },
       gasLimit: 8000000,
       gasPrice: 4000000000000
+    },
+    theta_testnet: {
+      networkCheckTimeout: 999999,    
+      host: 'https://eth-rpc-api-testnet.thetatoken.org/rpc',
+      port: 8545,
+      network_id: '*',
+      provider: () => {
+        // Replace the private key below with the private key of the deployer wallet. 
+        // Make sure the deployer wallet has a sufficient amount of TFuel, e.g. 100 TFuel
+        return new HDWalletProvider({
+          privateKeys: [privateKey],
+          providerOrUrl: 'https://eth-rpc-api-testnet.thetatoken.org/rpc',
+        });
+      },
+      gasLimit: 8000000,
+      gasPrice: 4000000000000
     }
-    // Useful for private networks
-    // private: {
-    // provider: () => new HDWalletProvider(mnemonic, `https://network.io`),
-    // network_id: 2111,   // This network is yours, in the cloud.
-    // production: true    // Treats this network as if it was a public net. (default: false)
-    // }
   },
 
   // Set default mocha options here, use special reporters etc.

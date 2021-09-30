@@ -21,12 +21,12 @@ module.exports = async function (deployer, network, accounts) {
   const BaseRegistrarImplementationInstanceAddress = BaseRegistrarImplementationInstance.address;
 
   // add controller to BaseRegistrarImplementation
-  await BaseRegistrarImplementationInstance.addController(accounts[1]); // comment this when deploy to mainnet
+  await BaseRegistrarImplementationInstance.addController(accounts[0]); // comment this when deploy to mainnet
   // set subnode owner to ENSRegistry
   await ENSRegistryInstance.setSubnodeOwner('0x0', sha3("theta"), BaseRegistrarImplementationInstanceAddress);
   
   // deploy TFuelPriceOracle
-  await deployer.deploy(TfuelPriceOracle, [0]);
+  await deployer.deploy(TfuelPriceOracle, [0, 0, 100, 50, 30]);
   const TfuelPriceOracleInstance = await TfuelPriceOracle.deployed();
   const TfuelPriceOracleInstanceAddress = TfuelPriceOracleInstance.address;
 
