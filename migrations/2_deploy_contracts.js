@@ -21,7 +21,7 @@ module.exports = async function (deployer, network, accounts) {
   const BaseRegistrarImplementationInstanceAddress = BaseRegistrarImplementationInstance.address;
 
   // add controller to BaseRegistrarImplementation
-  await BaseRegistrarImplementationInstance.addController(accounts[0]); // comment this when deploy to mainnet
+  // await BaseRegistrarImplementationInstance.addController(accounts[0]); // comment this when deploy to mainnet
   // set subnode owner to ENSRegistry
   await ENSRegistryInstance.setSubnodeOwner('0x0', sha3("theta"), BaseRegistrarImplementationInstanceAddress);
   
@@ -45,4 +45,17 @@ module.exports = async function (deployer, network, accounts) {
 
   // deploy ReverseRegistrar
   await deployer.deploy(ReverseRegistrar, ENSRegistryInstanceAddress, PublicResolverInstanceAddress);
-};
+  const ReverseRegistrarInstance = await ReverseRegistrar.deployed();
+  const ReverseRegistrarInstanceAddress = ReverseRegistrarInstance.address;
+
+  await ENSRegistryInstance.setSubnodeOwner('0x0', sha3('reverse'), accounts[0], {
+    from: accounts[0],
+  });
+
+  await ENSRegistryInstance.setSubnodeOwner(
+    namehash.hash('reverse'),
+    sha3('addr'),
+    ReverseRegistrarInstanceAddress,
+    { from: accounts[0] }
+  );
+}

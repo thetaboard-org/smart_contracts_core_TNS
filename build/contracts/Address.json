@@ -8049,7 +8049,7 @@
   },
   "networks": {},
   "schemaVersion": "3.4.3",
-  "updatedAt": "2021-09-30T21:01:30.240Z",
+  "updatedAt": "2021-10-09T17:57:50.369Z",
   "devdoc": {
     "details": "Collection of functions related to the address type",
     "kind": "dev",

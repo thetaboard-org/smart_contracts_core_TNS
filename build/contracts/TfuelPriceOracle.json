@@ -9351,6 +9351,45 @@
       "address": "0x3e8E076a643A956538853D01009d87A5E5915224",
       "transactionHash": "0x96a3d45c6ea780591a09e754c859b795edd49aa9ccf78637d81c76ba18c8ede6"
     },
+    "20": {
+      "events": {
+        "0x8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "previousOwner",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "newOwner",
+              "type": "address"
+            }
+          ],
+          "name": "OwnershipTransferred",
+          "type": "event"
+        },
+        "0x73422d94aedd596c2d4d39f27a01033adc390a9054efaf259afefd95ef7331df": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "uint256[]",
+              "name": "prices",
+              "type": "uint256[]"
+            }
+          ],
+          "name": "RentPriceChanged",
+          "type": "event"
+        }
+      },
+      "links": {},
+      "address": "0x724F9b93df0aA60060DeD935795DCB255F4401F0",
+      "transactionHash": "0x09ba1ac6f6f019a08b5bf0adf9ca31ee8d27f52364fa1aa903ced5289f1e5d18"
+    },
     "361": {
       "events": {
         "0x8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0": {
@@ -9387,8 +9426,8 @@
         }
       },
       "links": {},
-      "address": "0x553fD770Db554aA4E504ACC96907CF127E40b339",
-      "transactionHash": "0xab48962280e71c8da6c404be91da97057e81d729ef9bbbb4fbb912eb101e9fc8"
+      "address": "0xd5b59f44b94FA22178641a3b6C422933639a80bE",
+      "transactionHash": "0x41cc3fb23f424734be6ed9c878dee7e9235a43ba312fdb82c112e69572783386"
     },
     "365": {
       "events": {
@@ -9426,12 +9465,12 @@
         }
       },
       "links": {},
-      "address": "0x1dB9aC8bE0FBF47E9C8e1D64d488B44d9198693d",
-      "transactionHash": "0xa0228c7bfc06678ed7ed748b954a72cf51c96fe7c1f5d6e266976127feaec085"
+      "address": "0x646B8222a20C5E8e4c7a4D755fA24E740b3c649a",
+      "transactionHash": "0xb1efcaded6568f5a9ccf1c67d8715f0c784e90f7a07e0881ad25351c40346766"
     }
   },
   "schemaVersion": "3.4.3",
-  "updatedAt": "2021-09-30T21:01:54.968Z",
+  "updatedAt": "2021-10-09T18:02:43.030Z",
   "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",

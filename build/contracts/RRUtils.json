@@ -29407,7 +29407,7 @@
   },
   "networks": {},
   "schemaVersion": "3.4.3",
-  "updatedAt": "2021-09-30T21:01:30.138Z",
+  "updatedAt": "2021-10-09T17:57:50.246Z",
   "devdoc": {
     "details": "RRUtils is a library that provides utilities for parsing DNS resource records.",
     "kind": "dev",

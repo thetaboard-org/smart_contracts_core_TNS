@@ -98,17 +98,17 @@ contract ReverseRegistrar is Ownable, Controllable {
      * @dev Sets the `name()` record for the reverse ENS record associated with
      * the calling account. First updates the resolver to the default reverse
      * resolver if necessary.
-     * @param name The name to set for this address.
+     * @param _name The name to set for this address.
      * @return The ENS node hash of the reverse record.
      */
-    function setName(string memory name) public returns (bytes32) {
-        bytes32 node = _claimWithResolver(
+    function setName(string memory _name) public returns (bytes32) {
+        bytes32 _node = _claimWithResolver(
             msg.sender,
             address(this),
             address(defaultResolver)
         );
-        defaultResolver.setName(node, name);
-        return node;
+        defaultResolver.setName(_node, _name);
+        return _node;
     }
 
     /**

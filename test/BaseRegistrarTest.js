@@ -11,7 +11,7 @@ const { evm, exceptions } = require("./test-utils");
 const ZERO_ADDRESS = "0x0000000000000000000000000000000000000000";
 const ZERO_HASH = "0x0000000000000000000000000000000000000000000000000000000000000000";
 
-contract('BaseRegistrarTest', function (accounts) {
+contract('BaseRegistrarImplementation', function (accounts) {
 	const ownerAccount = accounts[0];
 	const controllerAccount = accounts[1];
 	const registrantAccount = accounts[2];
@@ -23,6 +23,8 @@ contract('BaseRegistrarTest', function (accounts) {
 	before(async () => {
 		ens = await ENS.deployed();
 		registrar = await BaseRegistrar.deployed();
+
+		registrar.addController(controllerAccount);
 	});
 
 	it('should allow new registrations', async () => {

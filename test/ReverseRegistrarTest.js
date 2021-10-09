@@ -1,5 +1,6 @@
 const namehash = require('eth-ens-namehash');
 const sha3 = require('web3-utils').sha3;
+const BaseRegistrarImplementation = artifacts.require('BaseRegistrarImplementation');
 const PublicResolver = artifacts.require('PublicResolver');
 const ReverseRegistrar = artifacts.require('ReverseRegistrar');
 const ENSRegistry = artifacts.require('ENSRegistry');
@@ -20,6 +21,8 @@ function getReverseNode(addr) {
 
 describe('ReverseRegistrar Tests', () => {
   contract('ReverseRegistar', function(accounts) {
+    const controllerAccount = accounts[1];
+
     let node, node2, node3, dummyOwnableReverseNode;
 
     let registrar, resolver, ens, dummyOwnable;
@@ -28,12 +31,15 @@ describe('ReverseRegistrar Tests', () => {
       node = getReverseNode(accounts[0]);
       node2 = getReverseNode(accounts[1]);
       node3 = getReverseNode(accounts[2]);
-
+      
       ens = await ENSRegistry.new();
       resolver = await PublicResolver.new(ens.address);
+      baseRegistrar = await BaseRegistrarImplementation.new(ens.address, namehash.hash("theta"));
       registrar = await ReverseRegistrar.new(ens.address, resolver.address);
       dummyOwnable = await ReverseRegistrar.new(ens.address, resolver.address);
       dummyOwnableReverseNode = getReverseNode(dummyOwnable.address);
+
+      baseRegistrar.addController(controllerAccount);
 
       await ens.setSubnodeOwner('0x0', sha3('reverse'), accounts[0], {
         from: accounts[0],

@@ -25689,6 +25689,76 @@
       "address": "0x903f355067c44FE13F14CcDC507B39B0ee433D7a",
       "transactionHash": "0x49ee93c119177238ef0fd6d4ec1fbf686003ec73ff99bd84a184ff0942630f18"
     },
+    "20": {
+      "events": {
+        "0x0667086d08417333ce63f40d5bc2ef6fd330e25aaaf317b7c489541f8fe600fa": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "string",
+              "name": "name",
+              "type": "string"
+            },
+            {
+              "indexed": true,
+              "internalType": "bytes32",
+              "name": "label",
+              "type": "bytes32"
+            },
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "owner",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "cost",
+              "type": "uint256"
+            }
+          ],
+          "name": "NameRegistered",
+          "type": "event"
+        },
+        "0xf261845a790fe29bbd6631e2ca4a5bdc83e6eed7c3271d9590d97287e00e9123": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "oracle",
+              "type": "address"
+            }
+          ],
+          "name": "NewPriceOracle",
+          "type": "event"
+        },
+        "0x8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "previousOwner",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "newOwner",
+              "type": "address"
+            }
+          ],
+          "name": "OwnershipTransferred",
+          "type": "event"
+        }
+      },
+      "links": {},
+      "address": "0xa47915a26392EedcB8e77Db039fb68b733b5A042",
+      "transactionHash": "0x7d4b96d98f961680c01212ae959f0c6593f3c53bf1db358548827945cc8fcbc7"
+    },
     "361": {
       "events": {
         "0x0667086d08417333ce63f40d5bc2ef6fd330e25aaaf317b7c489541f8fe600fa": {
@@ -25756,8 +25826,8 @@
         }
       },
       "links": {},
-      "address": "0xF6e010f87fd9Fa085af6252909Bf5EE4A417C074",
-      "transactionHash": "0xedbd5ae43c45b192da879f8e707809df0b202fcb2a1ef9f49aa3ad7582040df2"
+      "address": "0x45c20EaB9fc8BEB6920387Ac142ff9DFd48660c1",
+      "transactionHash": "0xa3d019ee5e2e3b65bc9acf3ada14201eebc5121ee55aff19871f79a9bf97540e"
     },
     "365": {
       "events": {
@@ -25826,12 +25896,12 @@
         }
       },
       "links": {},
-      "address": "0xA1A95C6d98e7a51904855C347f3E111FBe572772",
-      "transactionHash": "0x13d84ec009663c9f827aefe06b9f8880035b7541733a366e8467f79a1a7b7453"
+      "address": "0x351C071ed817D34d6900e6fE0BF1895BE20FEdfE",
+      "transactionHash": "0x236bddd3efbea1def874021faee44f961e8ab2fa7514ac096e69c7273c965176"
     }
   },
   "schemaVersion": "3.4.3",
-  "updatedAt": "2021-09-30T21:01:55.005Z",
+  "updatedAt": "2021-10-09T18:02:43.060Z",
   "networkType": "ethereum",
   "devdoc": {
     "details": "A registrar controller for registering names at fixed cost.",

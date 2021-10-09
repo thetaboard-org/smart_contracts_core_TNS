@@ -10,7 +10,7 @@ const sha3 = require('web3-utils').sha3;
 const DAYS = 24 * 60 * 60;
 const NULL_ADDRESS = "0x0000000000000000000000000000000000000000";
 
-contract('ETHRegistrarControllerTest', function (accounts) {
+contract('ETHRegistrarController', function (accounts) {
     let ens;
     let resolver;
     let baseRegistrar;

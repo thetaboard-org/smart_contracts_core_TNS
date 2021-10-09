@@ -2,7 +2,7 @@ const TfuelPriceOracle = artifacts.require('TfuelPriceOracle');
 
 const toBN = require('web3-utils').toBN;
 
-contract('TfuelPriceOracleTest', function () {
+contract('TfuelPriceOracle', function () {
     let priceOracle;
 
     before(async () => {
