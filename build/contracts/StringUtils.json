@@ -10,7 +10,7 @@
   "sourceMap": "26:806:3:-:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;",
   "deployedSourceMap": "26:806:3:-:0;;;;;;;;",
   "source": "pragma solidity >=0.8.4;\n\nlibrary StringUtils {\n    /**\n     * @dev Returns the length of a given string\n     *\n     * @param s The string to measure the length of\n     * @return The length of the input string\n     */\n    function strlen(string memory s) internal pure returns (uint) {\n        uint len;\n        uint i = 0;\n        uint bytelength = bytes(s).length;\n        for(len = 0; i < bytelength; len++) {\n            bytes1 b = bytes(s)[i];\n            if(b < 0x80) {\n                i += 1;\n            } else if (b < 0xE0) {\n                i += 2;\n            } else if (b < 0xF0) {\n                i += 3;\n            } else if (b < 0xF8) {\n                i += 4;\n            } else if (b < 0xFC) {\n                i += 5;\n            } else {\n                i += 6;\n            }\n        }\n        return len;\n    }\n}\n",
-  "sourcePath": "@ensdomains\\ens-contracts\\contracts\\ethregistrar\\StringUtils.sol",
+  "sourcePath": "@ensdomains/ens-contracts/contracts/ethregistrar/StringUtils.sol",
   "ast": {
     "absolutePath": "@ensdomains/ens-contracts/contracts/ethregistrar/StringUtils.sol",
     "exportedSymbols": {
@@ -2383,7 +2383,7 @@
   },
   "networks": {},
   "schemaVersion": "3.4.3",
-  "updatedAt": "2021-10-09T17:57:50.264Z",
+  "updatedAt": "2021-11-19T13:18:31.390Z",
   "devdoc": {
     "kind": "dev",
     "methods": {},

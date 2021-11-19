@@ -49,6 +49,37 @@ contract ETHRegistrarController is Ownable {
         maxCommitmentAge = _maxCommitmentAge;
     }
 
+    function massDomainBuy(string[] memory _nameArray, address owner, address resolver, address addr) external onlyOwner {
+        
+        for(uint256 counter = 0; counter < _nameArray.length; counter++) {
+            bytes32 label = keccak256(bytes(_nameArray[counter]));
+            uint256 tokenId = uint256(label);
+            if(resolver != address(0)) {
+                // Set this contract as the (temporary) owner, giving it
+                // permission to set up the resolver.
+                base.register(tokenId, address(this));
+
+                // The nodehash of this label
+                bytes32 nodehash = keccak256(abi.encodePacked(base.baseNode(), label));
+
+                // Set the resolver
+                base.ens().setResolver(nodehash, resolver);
+
+                // Configure the resolver
+                if (addr != address(0)) {
+                    Resolver(resolver).setAddr(nodehash, addr);
+                }
+
+                // Now transfer full ownership to the expeceted owner
+                base.reclaim(tokenId, owner);
+                base.transferFrom(address(this), owner, tokenId);
+            } else {
+                require(addr == address(0));
+                base.register(tokenId, owner);
+            }
+        }
+    }
+
     function rentPrice(string memory name) view public returns(uint) {
         return prices.price(name);
     }

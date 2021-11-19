@@ -158,7 +158,7 @@
   "sourceMap": "",
   "deployedSourceMap": "",
   "source": "pragma solidity >=0.8.4;\nimport \"../ResolverBase.sol\";\n\nabstract contract AddrResolver is ResolverBase {\n    bytes4 constant private ADDR_INTERFACE_ID = 0x3b3b57de;\n    bytes4 constant private ADDRESS_INTERFACE_ID = 0xf1cb7e06;\n    uint constant private COIN_TYPE_ETH = 60;\n\n    event AddrChanged(bytes32 indexed node, address a);\n    event AddressChanged(bytes32 indexed node, uint coinType, bytes newAddress);\n\n    mapping(bytes32=>mapping(uint=>bytes)) _addresses;\n\n    /**\n     * Sets the address associated with an ENS node.\n     * May only be called by the owner of that node in the ENS registry.\n     * @param node The node to update.\n     * @param a The address to set.\n     */\n    function setAddr(bytes32 node, address a) external authorised(node) {\n        setAddr(node, COIN_TYPE_ETH, addressToBytes(a));\n    }\n\n    /**\n     * Returns the address associated with an ENS node.\n     * @param node The ENS node to query.\n     * @return The associated address.\n     */\n    function addr(bytes32 node) public view returns (address payable) {\n        bytes memory a = addr(node, COIN_TYPE_ETH);\n        if(a.length == 0) {\n            return payable(0);\n        }\n        return bytesToAddress(a);\n    }\n\n    function setAddr(bytes32 node, uint coinType, bytes memory a) public authorised(node) {\n        emit AddressChanged(node, coinType, a);\n        if(coinType == COIN_TYPE_ETH) {\n            emit AddrChanged(node, bytesToAddress(a));\n        }\n        _addresses[node][coinType] = a;\n    }\n\n    function addr(bytes32 node, uint coinType) public view returns(bytes memory) {\n        return _addresses[node][coinType];\n    }\n\n    function supportsInterface(bytes4 interfaceID) virtual override public pure returns(bool) {\n        return interfaceID == ADDR_INTERFACE_ID || interfaceID == ADDRESS_INTERFACE_ID || super.supportsInterface(interfaceID);\n    }\n}\n",
-  "sourcePath": "@ensdomains\\ens-contracts\\contracts\\resolvers\\profiles\\AddrResolver.sol",
+  "sourcePath": "@ensdomains/ens-contracts/contracts/resolvers/profiles/AddrResolver.sol",
   "ast": {
     "absolutePath": "@ensdomains/ens-contracts/contracts/resolvers/profiles/AddrResolver.sol",
     "exportedSymbols": {
@@ -4225,7 +4225,7 @@
   },
   "networks": {},
   "schemaVersion": "3.4.3",
-  "updatedAt": "2021-10-09T17:57:50.284Z",
+  "updatedAt": "2021-11-19T13:18:31.402Z",
   "devdoc": {
     "kind": "dev",
     "methods": {

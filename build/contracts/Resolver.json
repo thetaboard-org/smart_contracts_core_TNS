@@ -681,7 +681,7 @@
   "sourceMap": "",
   "deployedSourceMap": "",
   "source": "pragma solidity >=0.8.4;\npragma experimental ABIEncoderV2;\n\n/**\n * A generic resolver interface which includes all the functions including the ones deprecated\n */\ninterface Resolver{\n    event AddrChanged(bytes32 indexed node, address a);\n    event AddressChanged(bytes32 indexed node, uint coinType, bytes newAddress);\n    event NameChanged(bytes32 indexed node, string name);\n    event ABIChanged(bytes32 indexed node, uint256 indexed contentType);\n    event PubkeyChanged(bytes32 indexed node, bytes32 x, bytes32 y);\n    event TextChanged(bytes32 indexed node, string indexed indexedKey, string key);\n    event ContenthashChanged(bytes32 indexed node, bytes hash);\n    /* Deprecated events */\n    event ContentChanged(bytes32 indexed node, bytes32 hash);\n\n    function ABI(bytes32 node, uint256 contentTypes) external view returns (uint256, bytes memory);\n    function addr(bytes32 node) external view returns (address);\n    function addr(bytes32 node, uint coinType) external view returns(bytes memory);\n    function contenthash(bytes32 node) external view returns (bytes memory);\n    function dnsrr(bytes32 node) external view returns (bytes memory);\n    function name(bytes32 node) external view returns (string memory);\n    function pubkey(bytes32 node) external view returns (bytes32 x, bytes32 y);\n    function text(bytes32 node, string calldata key) external view returns (string memory);\n    function interfaceImplementer(bytes32 node, bytes4 interfaceID) external view returns (address);\n    function setABI(bytes32 node, uint256 contentType, bytes calldata data) external;\n    function setAddr(bytes32 node, address addr) external;\n    function setAddr(bytes32 node, uint coinType, bytes calldata a) external;\n    function setContenthash(bytes32 node, bytes calldata hash) external;\n    function setDnsrr(bytes32 node, bytes calldata data) external;\n    function setName(bytes32 node, string calldata _name) external;\n    function setPubkey(bytes32 node, bytes32 x, bytes32 y) external;\n    function setText(bytes32 node, string calldata key, string calldata value) external;\n    function setInterface(bytes32 node, bytes4 interfaceID, address implementer) external;\n    function supportsInterface(bytes4 interfaceID) external pure returns (bool);\n    function multicall(bytes[] calldata data) external returns(bytes[] memory results);\n\n    /* Deprecated functions */\n    function content(bytes32 node) external view returns (bytes32);\n    function multihash(bytes32 node) external view returns (bytes memory);\n    function setContent(bytes32 node, bytes32 hash) external;\n    function setMultihash(bytes32 node, bytes calldata hash) external;\n}\n",
-  "sourcePath": "@ensdomains\\ens-contracts\\contracts\\resolvers\\Resolver.sol",
+  "sourcePath": "@ensdomains/ens-contracts/contracts/resolvers/Resolver.sol",
   "ast": {
     "absolutePath": "@ensdomains/ens-contracts/contracts/resolvers/Resolver.sol",
     "exportedSymbols": {
@@ -6710,7 +6710,7 @@
   },
   "networks": {},
   "schemaVersion": "3.4.3",
-  "updatedAt": "2021-10-09T17:57:50.269Z",
+  "updatedAt": "2021-11-19T13:18:31.393Z",
   "devdoc": {
     "kind": "dev",
     "methods": {},

@@ -43,12 +43,14 @@ module.exports = {
     development: {
       host: '127.0.0.1', // Localhost (default: none)
       port: 8545, // Standard Ethereum port (default: none)
-      gas: 0xfffffffffff,	// <-- Use this high gas value
-      gasPrice: 0x01,	// <-- Use this low gas price
+      //gas: 0xfffffffffff,	// <-- Use this high gas value
+      //gasPrice: 0x01,	// <-- Use this low gas price
       network_id: '*', // Any network (default: none)
+      gasLimit: 8000000,
+      gasPrice: 4000000000000
     },
     theta_main: {
-      networkCheckTimeout: 999999,    
+      networkCheckTimeout: 99999999999,    
       host: 'https://eth-rpc-api.thetatoken.org/rpc',
       port: 8545,
       network_id: '*',

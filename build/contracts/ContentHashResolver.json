@@ -86,7 +86,7 @@
   "sourceMap": "",
   "deployedSourceMap": "",
   "source": "pragma solidity >=0.8.4;\nimport \"../ResolverBase.sol\";\n\nabstract contract ContentHashResolver is ResolverBase {\n    bytes4 constant private CONTENT_HASH_INTERFACE_ID = 0xbc1c58d1;\n\n    event ContenthashChanged(bytes32 indexed node, bytes hash);\n\n    mapping(bytes32=>bytes) hashes;\n\n    /**\n     * Sets the contenthash associated with an ENS node.\n     * May only be called by the owner of that node in the ENS registry.\n     * @param node The node to update.\n     * @param hash The contenthash to set\n     */\n    function setContenthash(bytes32 node, bytes calldata hash) external authorised(node) {\n        hashes[node] = hash;\n        emit ContenthashChanged(node, hash);\n    }\n\n    /**\n     * Returns the contenthash associated with an ENS node.\n     * @param node The ENS node to query.\n     * @return The associated contenthash.\n     */\n    function contenthash(bytes32 node) external view returns (bytes memory) {\n        return hashes[node];\n    }\n\n    function supportsInterface(bytes4 interfaceID) virtual override public pure returns(bool) {\n        return interfaceID == CONTENT_HASH_INTERFACE_ID || super.supportsInterface(interfaceID);\n    }\n}\n",
-  "sourcePath": "@ensdomains\\ens-contracts\\contracts\\resolvers\\profiles\\ContentHashResolver.sol",
+  "sourcePath": "@ensdomains/ens-contracts/contracts/resolvers/profiles/ContentHashResolver.sol",
   "ast": {
     "absolutePath": "@ensdomains/ens-contracts/contracts/resolvers/profiles/ContentHashResolver.sol",
     "exportedSymbols": {
@@ -1811,7 +1811,7 @@
   },
   "networks": {},
   "schemaVersion": "3.4.3",
-  "updatedAt": "2021-10-09T17:57:50.291Z",
+  "updatedAt": "2021-11-19T13:18:31.406Z",
   "devdoc": {
     "kind": "dev",
     "methods": {

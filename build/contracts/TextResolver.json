@@ -102,7 +102,7 @@
   "sourceMap": "",
   "deployedSourceMap": "",
   "source": "pragma solidity >=0.8.4;\nimport \"../ResolverBase.sol\";\n\nabstract contract TextResolver is ResolverBase {\n    bytes4 constant private TEXT_INTERFACE_ID = 0x59d1d43c;\n\n    event TextChanged(bytes32 indexed node, string indexed indexedKey, string key);\n\n    mapping(bytes32=>mapping(string=>string)) texts;\n\n    /**\n     * Sets the text data associated with an ENS node and key.\n     * May only be called by the owner of that node in the ENS registry.\n     * @param node The node to update.\n     * @param key The key to set.\n     * @param value The text data value to set.\n     */\n    function setText(bytes32 node, string calldata key, string calldata value) external authorised(node) {\n        texts[node][key] = value;\n        emit TextChanged(node, key, key);\n    }\n\n    /**\n     * Returns the text data associated with an ENS node and key.\n     * @param node The ENS node to query.\n     * @param key The text data key to query.\n     * @return The associated text data.\n     */\n    function text(bytes32 node, string calldata key) external view returns (string memory) {\n        return texts[node][key];\n    }\n\n    function supportsInterface(bytes4 interfaceID) virtual override public pure returns(bool) {\n        return interfaceID == TEXT_INTERFACE_ID || super.supportsInterface(interfaceID);\n    }\n}\n",
-  "sourcePath": "@ensdomains\\ens-contracts\\contracts\\resolvers\\profiles\\TextResolver.sol",
+  "sourcePath": "@ensdomains/ens-contracts/contracts/resolvers/profiles/TextResolver.sol",
   "ast": {
     "absolutePath": "@ensdomains/ens-contracts/contracts/resolvers/profiles/TextResolver.sol",
     "exportedSymbols": {
@@ -2161,7 +2161,7 @@
   },
   "networks": {},
   "schemaVersion": "3.4.3",
-  "updatedAt": "2021-10-09T17:57:50.321Z",
+  "updatedAt": "2021-11-19T13:18:31.426Z",
   "devdoc": {
     "kind": "dev",
     "methods": {

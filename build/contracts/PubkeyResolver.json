@@ -102,7 +102,7 @@
   "sourceMap": "",
   "deployedSourceMap": "",
   "source": "pragma solidity >=0.8.4;\nimport \"../ResolverBase.sol\";\n\nabstract contract PubkeyResolver is ResolverBase {\n    bytes4 constant private PUBKEY_INTERFACE_ID = 0xc8690233;\n\n    event PubkeyChanged(bytes32 indexed node, bytes32 x, bytes32 y);\n\n    struct PublicKey {\n        bytes32 x;\n        bytes32 y;\n    }\n\n    mapping(bytes32=>PublicKey) pubkeys;\n\n    /**\n     * Sets the SECP256k1 public key associated with an ENS node.\n     * @param node The ENS node to query\n     * @param x the X coordinate of the curve point for the public key.\n     * @param y the Y coordinate of the curve point for the public key.\n     */\n    function setPubkey(bytes32 node, bytes32 x, bytes32 y) external authorised(node) {\n        pubkeys[node] = PublicKey(x, y);\n        emit PubkeyChanged(node, x, y);\n    }\n\n    /**\n     * Returns the SECP256k1 public key associated with an ENS node.\n     * Defined in EIP 619.\n     * @param node The ENS node to query\n     * @return x The X coordinate of the curve point for the public key.\n     * @return y The Y coordinate of the curve point for the public key.\n     */\n    function pubkey(bytes32 node) external view returns (bytes32 x, bytes32 y) {\n        return (pubkeys[node].x, pubkeys[node].y);\n    }\n\n    function supportsInterface(bytes4 interfaceID) virtual override public pure returns(bool) {\n        return interfaceID == PUBKEY_INTERFACE_ID || super.supportsInterface(interfaceID);\n    }\n}\n",
-  "sourcePath": "@ensdomains\\ens-contracts\\contracts\\resolvers\\profiles\\PubkeyResolver.sol",
+  "sourcePath": "@ensdomains/ens-contracts/contracts/resolvers/profiles/PubkeyResolver.sol",
   "ast": {
     "absolutePath": "@ensdomains/ens-contracts/contracts/resolvers/profiles/PubkeyResolver.sol",
     "exportedSymbols": {
@@ -2439,7 +2439,7 @@
   },
   "networks": {},
   "schemaVersion": "3.4.3",
-  "updatedAt": "2021-10-09T17:57:50.317Z",
+  "updatedAt": "2021-11-19T13:18:31.424Z",
   "devdoc": {
     "kind": "dev",
     "methods": {

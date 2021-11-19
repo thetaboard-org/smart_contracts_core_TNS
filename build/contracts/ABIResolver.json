@@ -101,7 +101,7 @@
   "sourceMap": "",
   "deployedSourceMap": "",
   "source": "pragma solidity >=0.8.4;\nimport \"../ResolverBase.sol\";\n\nabstract contract ABIResolver is ResolverBase {\n    bytes4 constant private ABI_INTERFACE_ID = 0x2203ab56;\n\n    event ABIChanged(bytes32 indexed node, uint256 indexed contentType);\n\n    mapping(bytes32=>mapping(uint256=>bytes)) abis;\n\n    /**\n     * Sets the ABI associated with an ENS node.\n     * Nodes may have one ABI of each content type. To remove an ABI, set it to\n     * the empty string.\n     * @param node The node to update.\n     * @param contentType The content type of the ABI\n     * @param data The ABI data.\n     */\n    function setABI(bytes32 node, uint256 contentType, bytes calldata data) external authorised(node) {\n        // Content types must be powers of 2\n        require(((contentType - 1) & contentType) == 0);\n\n        abis[node][contentType] = data;\n        emit ABIChanged(node, contentType);\n    }\n\n    /**\n     * Returns the ABI associated with an ENS node.\n     * Defined in EIP205.\n     * @param node The ENS node to query\n     * @param contentTypes A bitwise OR of the ABI formats accepted by the caller.\n     * @return contentType The content type of the return value\n     * @return data The ABI data\n     */\n    function ABI(bytes32 node, uint256 contentTypes) external view returns (uint256, bytes memory) {\n        mapping(uint256=>bytes) storage abiset = abis[node];\n\n        for (uint256 contentType = 1; contentType <= contentTypes; contentType <<= 1) {\n            if ((contentType & contentTypes) != 0 && abiset[contentType].length > 0) {\n                return (contentType, abiset[contentType]);\n            }\n        }\n\n        return (0, bytes(\"\"));\n    }\n\n    function supportsInterface(bytes4 interfaceID) virtual override public pure returns(bool) {\n        return interfaceID == ABI_INTERFACE_ID || super.supportsInterface(interfaceID);\n    }\n}\n",
-  "sourcePath": "@ensdomains\\ens-contracts\\contracts\\resolvers\\profiles\\ABIResolver.sol",
+  "sourcePath": "@ensdomains/ens-contracts/contracts/resolvers/profiles/ABIResolver.sol",
   "ast": {
     "absolutePath": "@ensdomains/ens-contracts/contracts/resolvers/profiles/ABIResolver.sol",
     "exportedSymbols": {
@@ -3608,7 +3608,7 @@
   },
   "networks": {},
   "schemaVersion": "3.4.3",
-  "updatedAt": "2021-10-09T17:57:50.280Z",
+  "updatedAt": "2021-11-19T13:18:31.399Z",
   "devdoc": {
     "kind": "dev",
     "methods": {
