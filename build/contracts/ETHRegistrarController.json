@@ -30706,8 +30706,8 @@
         }
       },
       "links": {},
-      "address": "0x534e1ca595F5447578372cE10A3EEc179162BF1D",
-      "transactionHash": "0xe398558a214bf9658659d8b0d15639b99ea72020a66e39a9b278520f8ce31172"
+      "address": "0x93a45E03122f7032F8B23367a3350B6582E43719",
+      "transactionHash": "0x4d52b81a55b3fd2504808fafd7e4614549b80cfc2606c02f7f3fdde0437eeff1"
     },
     "365": {
       "events": {
@@ -30776,12 +30776,12 @@
         }
       },
       "links": {},
-      "address": "0x351C071ed817D34d6900e6fE0BF1895BE20FEdfE",
-      "transactionHash": "0x236bddd3efbea1def874021faee44f961e8ab2fa7514ac096e69c7273c965176"
+      "address": "0x8ff4635F7bC36c08FbD68926A90d9f0bB7E9581C",
+      "transactionHash": "0x6e0deceb02a5d3d783687df2b19f9e5aad441fb5d87f85ed52deb144c5e7c6cd"
     }
   },
   "schemaVersion": "3.4.3",
-  "updatedAt": "2021-11-19T13:25:35.713Z",
+  "updatedAt": "2022-01-13T06:06:58.860Z",
   "networkType": "ethereum",
   "devdoc": {
     "details": "A registrar controller for registering names at fixed cost.",
