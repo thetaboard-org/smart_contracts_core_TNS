@@ -1,4 +1,3 @@
-const { ethers } = require("ethers");
 const domainsToBuy = require('../domainsToBuy.json');
 
 const TfuelPriceOracle = artifacts.require("TfuelPriceOracle");
@@ -41,6 +40,7 @@ module.exports = async function (deployer, network, accounts) {
       }
     }
 
+    console.log("Before mass buy");
     console.log(await web3.eth.getBalance(accounts[0]));
     await ETHRegistrarControllerInstance.massDomainBuy(domainList, accounts[0], PublicResolverInstanceAddress, accounts[0]);
     console.log("Final massDomainBuy DONE");

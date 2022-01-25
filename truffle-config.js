@@ -48,11 +48,10 @@ module.exports = {
       gasLimit: 8000000,
       gasPrice: 4000000000000
     },
-    theta_main: {
-      networkCheckTimeout: 99999999999,    
+    theta_mainnet: {
+      networkCheckTimeout: 999999,
       host: 'https://eth-rpc-api.thetatoken.org/rpc',
-      port: 8545,
-      network_id: '*',
+      network_id: 361,
       provider: () => {
         // Replace the private key below with the private key of the deployer wallet. 
         // Make sure the deployer wallet has a sufficient amount of TFuel, e.g. 100 TFuel
