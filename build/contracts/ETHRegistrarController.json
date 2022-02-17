@@ -30781,7 +30781,7 @@
     }
   },
   "schemaVersion": "3.4.3",
-  "updatedAt": "2022-01-25T18:38:35.083Z",
+  "updatedAt": "2022-02-17T00:31:22.189Z",
   "networkType": "ethereum",
   "devdoc": {
     "details": "A registrar controller for registering names at fixed cost.",
