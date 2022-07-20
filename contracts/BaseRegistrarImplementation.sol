@@ -36,7 +36,7 @@ contract BaseRegistrarImplementation is BaseRegistrar, ERC721 {
     }
 
     // Authorises a controller, who can register and renew domains.
-    function addController(address controller) external override  {
+    function addController(address controller) external override onlyOwner {
         controllers[controller] = true;
         emit ControllerAdded(controller);
     }
