@@ -6,12 +6,12 @@ module.exports = async function (deployer, network, accounts) {
   await TfuelPriceOracleInstance.setPrices([
     0,
     ethers.utils.parseEther("10000"),
-    ethers.utils.parseEther("2500"),
+    ethers.utils.parseEther("3000"),
+    ethers.utils.parseEther("1500"),
     ethers.utils.parseEther("1000"),
-    ethers.utils.parseEther("500"),
-    ethers.utils.parseEther("250"),
-    ethers.utils.parseEther("150"),
-    ethers.utils.parseEther("100")]);
+    ethers.utils.parseEther("750"),
+    ethers.utils.parseEther("600"),
+    ethers.utils.parseEther("500")]);
 
 
     // await TfuelPriceOracleInstance.setPrices([
