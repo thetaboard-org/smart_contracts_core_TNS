@@ -19,8 +19,6 @@ module.exports = async function (deployer, network, accounts) {
   const BaseRegistrarImplementationInstance = await BaseRegistrarImplementation.deployed();
   const BaseRegistrarImplementationInstanceAddress = BaseRegistrarImplementationInstance.address;
 
-  // add controller to BaseRegistrarImplementation
-  // await BaseRegistrarImplementationInstance.addController(accounts[0]); // comment this when deploy to mainnet
   // set subnode owner to ENSRegistry
   await ENSRegistryInstance.setSubnodeOwner('0x0', sha3("theta"), BaseRegistrarImplementationInstanceAddress);
   
@@ -55,6 +53,6 @@ module.exports = async function (deployer, network, accounts) {
   const ETHRegistrarControllerInstance = await ETHRegistrarController.deployed();
   const ETHRegistrarControllerInstanceAddress = ETHRegistrarControllerInstance.address;
 
-  // add controller to ENSRegistry
+  // add controller to BaseRegistrarImplementation
   await BaseRegistrarImplementationInstance.addController(ETHRegistrarControllerInstanceAddress);
 }

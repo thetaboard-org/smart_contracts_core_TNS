@@ -49,15 +49,18 @@ module.exports = {
       gasPrice: 4000000000000
     },
     theta_mainnet: {
+      timeoutBlocks: 999999, // Increase the timeout
       networkCheckTimeout: 999999,
-      host: 'https://eth-rpc-api.thetatoken.org/rpc',
+      host: 'http://142.44.213.241:18888/rpc',
+      // host: 'https://eth-rpc-api.thetatoken.org/rpc',
       network_id: 361,
       provider: () => {
         // Replace the private key below with the private key of the deployer wallet. 
         // Make sure the deployer wallet has a sufficient amount of TFuel, e.g. 100 TFuel
         return new HDWalletProvider({
           privateKeys: [secrets.mainnet.privateKey],
-          providerOrUrl: 'https://eth-rpc-api.thetatoken.org/rpc',
+          providerOrUrl: 'http://142.44.213.241:18888/rpc',
+          // providerOrUrl: 'https://eth-rpc-api.thetatoken.org/rpc',
         });
       },
       gasLimit: 8000000,

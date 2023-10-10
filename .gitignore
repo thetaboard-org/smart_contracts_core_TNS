@@ -102,3 +102,10 @@ dist
 
 # File with mnemonic key
 secrets.json
+
+.test
+
+temp_migration
+
+migrations/5*
+migrations/6*
