@@ -1,4 +1,4 @@
-const domainsToBuy = require('../tns-to-transfer.json');
+const { ethers } = require("ethers");
 
 const TfuelPriceOracle = artifacts.require("TfuelPriceOracle");
 const ETHRegistrarController = artifacts.require("ETHRegistrarController");
@@ -27,11 +27,9 @@ module.exports = async function (deployer, network, accounts) {
     let domainList = []
     let transactionsPerBlock = 40;
     let index = 0;
-    // for await (const domain of domainsToBuy) {
-    for (let i = index; i < domainsToBuy.length; i++) {
+    for (let i = index; i < domainList.length; i++) {
       try {
       console.log(i);
-      domainList.push(domainsToBuy[i].name.toString());
       if (domainList.length > transactionsPerBlock) {
           await ETHRegistrarControllerInstance.massDomainBuy(domainList, accounts[0], PublicResolverInstanceAddress, accounts[0]);
           domainList = [];
@@ -39,10 +37,20 @@ module.exports = async function (deployer, network, accounts) {
       } catch (e) {
         console.log(i);
         console.log(e);
-        throw "mass buy stopped at: " + domainsToBuy[i].name
+        throw "mass buy stopped at: " + domainList[i]
       }
     }
 
     await ETHRegistrarControllerInstance.massDomainBuy(domainList, accounts[0], PublicResolverInstanceAddress, accounts[0]);
+
+    await TfuelPriceOracleInstance.setPrices([
+      0,
+      ethers.utils.parseEther("10000"),
+      ethers.utils.parseEther("3000"),
+      ethers.utils.parseEther("1500"),
+      ethers.utils.parseEther("1000"),
+      ethers.utils.parseEther("750"),
+      ethers.utils.parseEther("600"),
+      ethers.utils.parseEther("500")]);  
 }
 
